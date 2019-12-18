@@ -9,6 +9,8 @@
 
 
     <!--
+     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />s
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
@@ -84,10 +86,9 @@
 
     Should not be able to download file that can't be removed.
       <uses-permission android:name="android.permission.DOWNLOAD_CACHE_NON_PURGEABLE" />
-    Should not access location:
+
      <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     should not have access to bluetooth.
      <uses-permission android:name="android.permission.BLUETOOTH" />

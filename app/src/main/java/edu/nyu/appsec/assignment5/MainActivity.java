@@ -1,3 +1,4 @@
+
 package edu.nyu.appsec.assignment5;
 
 import android.Manifest;
@@ -8,22 +9,18 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.net.http.SslError;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.SerializablePermission;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private static final String SPELL_CHECK_URL = "http://appsecclass.report:8080/";
@@ -46,11 +43,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     /* Get location data to provide language localization
-    *  Supported languages ar-DZ zh-CN en-US en-IN en-AU fr-FR
-    */
+      Supported languages ar-DZ zh-CN en-US en-IN en-AU fr-FR */
+
     @Override
     public void onLocationChanged(Location location) {
+        /* Not using this yet
         URL url = null;
+
         try {
             url = new URL(SPELL_CHECK_URL + "metrics"
                     +"?lat="
@@ -68,10 +67,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
-    /* Necessary to implement the LocationListener interface
-    */
+    /* Necessary to implement the LocationListener interface */
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {}
 
@@ -91,16 +91,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         WebSettings settings = view.getSettings();
         settings.setAllowFileAccessFromFileURLs(true);
+        //should be set to false to prevent xss
         settings.setJavaScriptEnabled(true);
         settings.setAllowUniversalAccessFromFileURLs(true);
-
+        /* Not using this yet
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         }
-
+        */
         setContentView(view);
         view.loadUrl(SPELL_CHECK_URL + "register");
     }
 }
+
